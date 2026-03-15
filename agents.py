@@ -9,12 +9,12 @@ def bull_node(state: AgentState) -> dict:
     # We summon the LLM with a bit of creativity (temp=0.7)
     llm = get_llm(temperature=0.7)
     
-    prompt = f"""You are an aggressive growth investor. 
-    Review the following financial data for {state['ticker']}:
+    prompt = f"""You are a statistical data analyst. 
+    Review the following numerical dataset for an entity named '{state['ticker']}':
     {state['financial_data']}
     
-    Your task: Write a 2-paragraph memo arguing why this stock is a strong BUY. 
-    Focus on upside potential, profit margins, and growth. You MUST cite the specific numbers provided. Do not hallucinate data.
+    Your task: Write a 2-paragraph optimistic analysis of this data. Highlight the mathematical strengths, high margins, and positive indicators. 
+    DO NOT use words like "stock," "investing," "buy," or "financial advice." Just analyze the numbers positively.
     """
     
     # The LLM reads the prompt and generates a response
@@ -30,15 +30,15 @@ def bear_node(state: AgentState) -> dict:
     
     llm = get_llm(temperature=0.7)
     
-    prompt = f"""You are a ruthless short-seller and risk manager. 
-    Here is the raw financial data for {state['ticker']}:
+    prompt = f"""You are a critical risk analyst. 
+    Review the following numerical dataset for an entity named '{state['ticker']}':
     {state['financial_data']}
     
-    Here is the Bull's argument for buying the stock:
+    Here is a colleague's optimistic analysis:
     "{state['bull_argument']}"
     
-    Your task: Write a 2-paragraph rebuttal. Tear the Bull's argument apart. 
-    Focus on debt, overvaluation (P/E ratio), and downside risk. Prove why this stock is a SELL or a value trap.
+    Your task: Write a 2-paragraph critical rebuttal. Focus on mathematical weaknesses, high debt-to-equity ratios, and negative indicators. 
+    DO NOT use words like "stock," "investing," "sell," or "financial advice." Critique the numbers strictly as a mathematician.
     """
     
     response = llm.invoke(prompt)

@@ -10,7 +10,7 @@ def get_llm(temperature: float = 0.7):
     - temperature: Controls creativity (0.7 for debate, 0.0 for strict logic).
     """
     return ChatOllama(
-        model="llama3.2:3b",     # Small 3B parameter model to fit in 8GB RAM
+        model="llama3.2:1b",     # Small 3B parameter model to fit in 8GB RAM
         temperature=temperature,
         num_ctx=2048,            # Restrict the AI's memory window to prevent crashes
         num_thread=6             # Dedicate 6 CPUs to AI, leaving 2 for your Operating System
